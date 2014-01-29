@@ -12,5 +12,7 @@ public interface JobFlow {
 	public void afterWorker(WorkerContext context) throws WorkerException;
 	
 	public void afterWorker1(WorkerContext context) throws WorkerException;	
+	
+	public void afterWorker2(WorkerContext context) throws WorkerException;		
 
 }
