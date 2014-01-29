@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd"
+	default-autowire="byName">
+
+	<!-- abstract job scheduler center factory -->
+	<bean name="labor.JobSchedulerCenter" class="com.labor.job.JobSchedulerCenter" abstract="true" />
+
+</beans>

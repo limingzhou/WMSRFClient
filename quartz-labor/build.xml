@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<project name="quartz-labor" default="jar" basedir=".">
+	<property name="appname" value="quartz-labor" />
+	<property name="src" value="src/java" />
+	<property name="resourcesrc" value="src/resource" />
+	<property name="lib" value="lib" />
+	<property name="build" value="bin" />
+	<property name="classpath" value="${build}" />
+	<property name="packaging" value="branch"/>
+	<property name="version" value="1.0"/>
+	<path id="classpath">
+		<fileset dir="${lib}">
+			<include name="**/*.jar" />
+		</fileset>
+		<pathelement location="${build}" />
+	</path>
+	<tstamp>
+		<format property="build.time" pattern="yyyyMMddHHmmss" />
+	</tstamp>
+	
+	<!--clear -->
+	<target name="clear">
+		<delete dir="${packaging}" />
+		<delete>
+			<fileset dir="${build}">
+				<include name="**/*.*" />
+			</fileset>
+		</delete>
+	</target>
+	
+	<!--compile -->
+	<target name="compile">
+		
+		<mkdir dir="${build}" />
+		
+		<javac classpathref="classpath" includeantruntime="on" srcdir="${src}" destdir="${build}">
+			<include name="**/*.java" />
+		</javac>
+
+		<!-- copy resource file to build path -->
+		<copy todir="${build}">
+			<fileset dir="${resourcesrc}">
+				<exclude name="**/*.java" />
+			</fileset>
+		</copy>
+
+	</target>
+
+	<!-- make jars -->
+	<target name="jar" depends="clear,compile">
+		<jar destfile="${packaging}/quartz-labor-${version}.jar" basedir="${build}">
+			<include name="**/*.class" />
+			<include name="**/*.properties" />
+			<include name="**/*.xml" />
+		</jar>
+	</target>
+
+</project>
